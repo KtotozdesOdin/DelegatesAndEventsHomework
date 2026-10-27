@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            // --- Часть 1: GetMax на продуктах ---
+            // GetMax на продуктах
             var products = new List<Product>
             {
                 new Product { Name = "Laptop", Price = 85000, Weight = 2.1f },
@@ -18,14 +18,14 @@
             Console.WriteLine($"Самый дорогой: {mostExpensive.Name}, цена {mostExpensive.Price}");
             Console.WriteLine($"Самый тяжёлый: {heaviest.Name}, вес {heaviest.Weight}");
 
-            // --- Часть 2: поиск файлов ---
+            // поиск файлов
             var searcher = new FileSearcher();
             var foundFiles = new List<FileInfo>();
 
             searcher.FileFound += (sender, e) =>
             {
                 foundFiles.Add(new FileInfo(e.FileName));
-                Console.WriteLine($"Путь к файлу: {e.FileName}");
+                Console.WriteLine($"[первый подписчик] Путь к файлу: {e.FileName}");
                 if (Path.GetExtension(e.FileName) == ".exe")
                 {
                     e.Cancel = true;
@@ -48,7 +48,7 @@
 
         static void OnFileFoundPrint(object? sender, FileArgs e)
         {
-            Console.WriteLine($"  [второй подписчик] {Path.GetFileName(e.FileName)}");
+            Console.WriteLine($"[второй подписчик] {Path.GetFileName(e.FileName)}");
         }
 
         static void PrintBiggest(List<FileInfo> files)
